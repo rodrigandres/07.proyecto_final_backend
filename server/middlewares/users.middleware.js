@@ -15,11 +15,17 @@ const verifyToken = async (req, res, next) => {
   }
 
   try {
-    const r = await jwtVerify(token)
-    if (!r) {
+    const decodedToken = await jwtVerify(token)
+
+    if (!decodedToken || !decodedToken.id) {
       return res.status(MIDDLEWARE_STATUS?.unauthorized?.code || 401).json(MIDDLEWARE_STATUS?.unauthorized?.text?.op3 || 'No estás autorizado')
     }
-    req.user = r
+
+    req.user = {
+      id: decodedToken.id
+    }
+
+    console.log('req.user middleware:', req.user)
     next()
   } catch (error) {
     console.error('Error al verificar el token:', error)

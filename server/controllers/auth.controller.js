@@ -9,7 +9,8 @@ export const registerUser = async (req, res) => {
     console.log(req.body)
     const passEncrypted = encrypt(password)
     const [user] = await sql.createUser(name, email, gender, phoneNumber, passEncrypted, termsAndConditions)
-    res.status(HTTP_STATUS.created.code).json({ id: user.id, email: user.email })
+    const token = jwtSign({ id: user.id, email: user.email })
+    res.status(HTTP_STATUS.created.code).json({ token })
   } catch (error) {
     res.status(HTTP_STATUS.internal_server_error.code).json(error)
   }
