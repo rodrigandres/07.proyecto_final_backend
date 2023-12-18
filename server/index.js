@@ -3,6 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import authRoutes from './routes/auth.routes.js'
+import googleMapsRoutes from './routes/googleMaps.routes.js'
 
 const PORT = process.env.PORT ?? 3000
 const app = express()
@@ -16,8 +17,9 @@ app.get('/', (_, res) => {
   res.json({ message: 'Welcome to my API' })
 })
 
-// routes initialize
 app.use('/api', authRoutes)
+
+app.use('/api', googleMapsRoutes)
 
 app.all('*', (_, res) => res.status(404).json({ code: 404, message: 'Página no encontrada' }))
 
