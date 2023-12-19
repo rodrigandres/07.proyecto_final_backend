@@ -9,7 +9,10 @@ const config = {
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   database: process.env.DB_DATABASE,
-  allowExistOnIdle: true
+  allowExistOnIdle: true,
+  ssl: {
+    rejectUnauthorized: true
+  }
 }
 
 const pool = new Pool(config)
