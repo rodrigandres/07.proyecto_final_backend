@@ -1,6 +1,6 @@
-CREATE DATABASE transporte_maple;
+CREATE DATABASE transporte_maple_proyectodf;
 
-\c transporte_maple;
+\c transporte_maple_proyectodf;
 
 --Tabla usuarios
 CREATE TABLE users (
