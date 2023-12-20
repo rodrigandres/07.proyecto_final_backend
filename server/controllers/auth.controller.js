@@ -6,7 +6,6 @@ import { encrypt, compare } from '../utils/crypts.js'
 export const registerUser = async (req, res) => {
   try {
     const { name, email, gender, phoneNumber, password, termsAndConditions } = req.body
-    console.log(req.body)
     const passEncrypted = encrypt(password)
     const [user] = await sql.createUser(name, email, gender, phoneNumber, passEncrypted, termsAndConditions)
     const token = jwtSign({ id: user.id, email: user.email })

@@ -17,6 +17,24 @@ const config = {
 
 const pool = new Pool(config)
 
+// Prueba BD
+// pool.query('SELECT NOW()', (err, res) => {
+//   if (err) {
+//     console.error('Error al conectar a la base de datos:', err)
+//   } else {
+//     console.log('Conexión exitosa a la base de datos, hora actual:', res.rows[0].now)
+//   }
+// })
+
+// export const testQuotationsTable = async () => {
+//   try {
+//     const result = await pool.query('SELECT * FROM quotations LIMIT 1')
+//     console.log('Prueba de conexión a la tabla quotations:', result.rows)
+//   } catch (error) {
+//     console.error('Error al conectar con la tabla quotations:', error)
+//   }
+// }
+
 const genericSqlQuery = (query, values) => pool
   .query(query, values)
   .then(({ rows }) => rows)

@@ -4,11 +4,15 @@ import cors from 'cors'
 import morgan from 'morgan'
 import authRoutes from './routes/auth.routes.js'
 import googleMapsRoutes from './routes/googleMaps.routes.js'
+import quotationRoutes from './routes/quotation.routes.js'
+// import { testQuotationsTable } from './dataAccess/pg.js'
 
 const PORT = process.env.PORT ?? 3000
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173'
 
 const app = express()
+
+// testQuotationsTable().catch(error => console.error('Error al realizar la prueba:', error))
 
 app.use(morgan('dev'))
 
@@ -22,6 +26,8 @@ app.get('/', (_, res) => {
 app.use('/api', authRoutes)
 
 app.use('/api', googleMapsRoutes)
+
+app.use('/api', quotationRoutes)
 
 app.all('*', (_, res) => res.status(404).json({ code: 404, message: 'Página no encontrada' }))
 

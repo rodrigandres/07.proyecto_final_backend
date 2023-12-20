@@ -24,8 +24,6 @@ const verifyToken = async (req, res, next) => {
     req.user = {
       id: decodedToken.id
     }
-
-    console.log('req.user middleware:', req.user)
     next()
   } catch (error) {
     console.error('Error al verificar el token:', error)
